@@ -359,7 +359,6 @@ function drawVictory() {
         canvasContext.fillStyle = "black";
         canvasContext.textAlign = "center";
 
-        // Аналогично для победы
         const textY1 = GAME.displayHeight / 2 - lineHeight * 1;
         drawTextWithWrap("Победа!", GAME.displayWidth / 2, textY1, maxTextWidth, fontSize, lineHeight);
 
