@@ -336,11 +336,15 @@ function drawGameOver() {
         canvasContext.fillStyle = "black";
         canvasContext.textAlign = "center";
 
-        // Центр экрана по вертикали
-        const textY = GAME.displayHeight / 2;
+        // Первый блок — выше центра
+        const textY1 = GAME.displayHeight / 2 - lineHeight * 1.5;
+        drawTextWithWrap("Игра окончена!", GAME.displayWidth / 2, textY1, maxTextWidth, fontSize, lineHeight);
 
-        drawTextWithWrap("Игра окончена!", GAME.displayWidth / 2, textY, maxTextWidth, fontSize, lineHeight);
-        drawTextWithWrap("Нажмите пробел, чтобы продолжить", GAME.displayWidth / 2, textY, maxTextWidth, fontSize * 0.8, lineHeight * 0.9);
+        // Второй блок — ниже центра
+        const smallerFontSize = fontSize * 0.8;
+        const smallerLineHeight = lineHeight * 0.9;
+        const textY2 = GAME.displayHeight / 2 + lineHeight * 1.5;
+        drawTextWithWrap("Нажмите пробел, чтобы продолжить", GAME.displayWidth / 2, textY2, maxTextWidth, smallerFontSize, smallerLineHeight);
     }
 }
 
@@ -355,10 +359,14 @@ function drawVictory() {
         canvasContext.fillStyle = "black";
         canvasContext.textAlign = "center";
 
-        const textY = GAME.displayHeight / 2;
+        // Аналогично для победы
+        const textY1 = GAME.displayHeight / 2 - lineHeight * 1.5;
+        drawTextWithWrap("Победа!", GAME.displayWidth / 2, textY1, maxTextWidth, fontSize, lineHeight);
 
-        drawTextWithWrap("Победа!", GAME.displayWidth / 2, textY, maxTextWidth, fontSize, lineHeight);
-        drawTextWithWrap("Нажмите пробел, чтобы продолжить", GAME.displayWidth / 2, textY, maxTextWidth, fontSize * 0.8, lineHeight * 0.9);
+        const smallerFontSize = fontSize * 0.8;
+        const smallerLineHeight = lineHeight * 0.9;
+        const textY2 = GAME.displayHeight / 2 + lineHeight * 1.5;
+        drawTextWithWrap("Нажмите пробел, чтобы продолжить", GAME.displayWidth / 2, textY2, maxTextWidth, smallerFontSize, smallerLineHeight);
     }
 }
 
