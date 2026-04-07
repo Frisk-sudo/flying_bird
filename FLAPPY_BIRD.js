@@ -238,60 +238,6 @@ function checkVictory() {
         return
     }
 }
-
-function drawTextWithWrap(text, x, y, maxWidth, fontSize, lineHeight) {
-    const words = text.split(' ');
-    const lines = [];
-    let currentLine = '';
-
-    for (const word of words) {
-        const testLine = currentLine ? currentLine + ' ' + word : word;
-        const metrics = canvasContext.measureText(testLine);
-        const testWidth = metrics.width;
-
-        if (testWidth > maxWidth && currentLine) {
-            lines.push(currentLine);
-            currentLine = word;
-        } else {
-            currentLine = testLine;
-        }
-    }
-    lines.push(currentLine);
-
-    lines.forEach((line, index) => {
-        canvasContext.fillText(line, x, y + (index * lineHeight));
-    });
-}
-
-function drawTextWithWrap(text, x, y, maxWidth, fontSize, lineHeight) {
-    const words = text.split(' ');
-    const lines = [];
-    let currentLine = '';
-
-    for (const word of words) {
-        const testLine = currentLine ? currentLine + ' ' + word : word;
-        const metrics = canvasContext.measureText(testLine);
-        const testWidth = metrics.width;
-
-        if (testWidth > maxWidth && currentLine) {
-            lines.push(currentLine);
-            currentLine = word;
-        } else {
-            currentLine = testLine;
-        }
-    }
-    lines.push(currentLine);
-
-    // Рассчитываем общую высоту блока текста
-    const totalHeight = lines.length * lineHeight;
-    // Корректируем начальную Y‑позицию, чтобы блок был по центру вертикали
-    const startY = y - totalHeight / 2;
-
-    lines.forEach((line, index) => {
-        canvasContext.fillText(line, x, startY + (index * lineHeight));
-    });
-}
-
 function drawTextWithWrap(text, x, y, maxWidth, fontSize, lineHeight) {
     const words = text.split(' ');
     const lines = [];
@@ -368,7 +314,6 @@ function drawVictory() {
         drawTextWithWrap("Нажмите пробел, чтобы продолжить", GAME.displayWidth / 2, textY2, maxTextWidth, smallerFontSize, smallerLineHeight);
     }
 }
-
 function updateBird() {
    
     if (keys["ArrowUp"] || keys["w"]) {
@@ -558,7 +503,7 @@ function restartGame() {
         BIRD.y = 100;
 
         canvasContext.clearRect(0, 0, GAME.displayWidth, GAME.displayHeight);
-        // createPipe();
+        createPipe();
         requestAnimationFrame(play)
     }
 }
@@ -641,7 +586,7 @@ BIRD.img.onload = function () {
             updateGameBounds();
 
             initMic();
-            // createPipe();
+            createPipe();
             play();
         }
     }
