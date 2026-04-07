@@ -239,36 +239,63 @@ function checkVictory() {
     }
 }
 
+function drawTextWithWrap(text, x, y, maxWidth, fontSize, lineHeight) {
+    const words = text.split(' ');
+    const lines = [];
+    let currentLine = '';
+
+    for (const word of words) {
+        const testLine = currentLine ? currentLine + ' ' + word : word;
+        const metrics = canvasContext.measureText(testLine);
+        const testWidth = metrics.width;
+
+        if (testWidth > maxWidth && currentLine) {
+            lines.push(currentLine);
+            currentLine = word;
+        } else {
+            currentLine = testLine;
+        }
+    }
+    lines.push(currentLine);
+
+    lines.forEach((line, index) => {
+        canvasContext.fillText(line, x, y + (index * lineHeight));
+    });
+}
+
 function drawGameOver() {
     if (gameOverFlag) {
-        const fontSize = Math.min(60, GAME.displayWidth / 12);
-        
+        const isMobile = window.innerWidth <= 768;
+        const fontSize = isMobile ? 36 : Math.min(60, GAME.displayWidth / 12);
+        const maxTextWidth = GAME.displayWidth * 0.8; // 80% ширины экрана
+        const lineHeight = fontSize * 1.4;
+
         canvasContext.font = `${fontSize}px serif`;
         canvasContext.fillStyle = "black";
         canvasContext.textAlign = "center";
-        
-        // Вычисляем позицию текста с отступом
-        const textY = GAME.displayHeight / 2;
-        const textY2 = textY + fontSize * 1.5;
-        
-        canvasContext.fillText("Игра окончена!", GAME.displayWidth / 2, textY);
-        canvasContext.fillText("Нажмите пробел, чтобы продолжить", GAME.displayWidth / 2, textY2);
+
+        const textY = GAME.displayHeight * 0.4; // Сдвигаем текст выше для лучшего баланса
+
+        drawTextWithWrap("Игра окончена!", GAME.displayWidth / 2, textY, maxTextWidth, fontSize, lineHeight);
+        drawTextWithWrap("Нажмите пробел, чтобы продолжить", GAME.displayWidth / 2, textY + lineHeight * 2, maxTextWidth, fontSize * 0.8, lineHeight * 0.9);
     }
 }
 
 function drawVictory() {
     if (victory) {
-        const fontSize = Math.min(60, GAME.displayWidth / 12);
-        
+        const isMobile = window.innerWidth <= 768;
+        const fontSize = isMobile ? 36 : Math.min(60, GAME.displayWidth / 12);
+        const maxTextWidth = GAME.displayWidth * 0.8;
+        const lineHeight = fontSize * 1.4;
+
         canvasContext.font = `${fontSize}px serif`;
         canvasContext.fillStyle = "black";
         canvasContext.textAlign = "center";
-        
-        const textY = GAME.displayHeight / 2;
-        const textY2 = textY + fontSize * 1.5;
-        
-        canvasContext.fillText("Победа!", GAME.displayWidth / 2, textY);
-        canvasContext.fillText("Нажмите пробел,\nчтобы продолжить", GAME.displayWidth / 2, textY2);
+
+        const textY = GAME.displayHeight * 0.4;
+
+        drawTextWithWrap("Победа!", GAME.displayWidth / 2, textY, maxTextWidth, fontSize, lineHeight);
+        drawTextWithWrap("Нажмите пробел, чтобы продолжить", GAME.displayWidth / 2, textY + lineHeight * 2, maxTextWidth, fontSize * 0.8, lineHeight * 0.9);
     }
 }
 
