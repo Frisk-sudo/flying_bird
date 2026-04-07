@@ -330,20 +330,20 @@ function drawGameOver() {
         const isMobile = window.innerWidth <= 768;
         const fontSize = isMobile ? 36 : Math.min(60, GAME.displayWidth / 12);
         const maxTextWidth = GAME.displayWidth * 0.8;
-        const lineHeight = fontSize * 1.4;
+        const lineHeight = fontSize * 1.1;
 
         canvasContext.font = `${fontSize}px serif`;
         canvasContext.fillStyle = "black";
         canvasContext.textAlign = "center";
 
         // Первый блок — выше центра
-        const textY1 = GAME.displayHeight / 2 - lineHeight * 1.5;
+        const textY1 = GAME.displayHeight / 2 - lineHeight * 1.2;
         drawTextWithWrap("Игра окончена!", GAME.displayWidth / 2, textY1, maxTextWidth, fontSize, lineHeight);
 
         // Второй блок — ниже центра
         const smallerFontSize = fontSize * 0.8;
         const smallerLineHeight = lineHeight * 0.9;
-        const textY2 = GAME.displayHeight / 2 + lineHeight * 1.5;
+        const textY2 = GAME.displayHeight / 2 + lineHeight * 1.2;
         drawTextWithWrap("Нажмите пробел, чтобы продолжить", GAME.displayWidth / 2, textY2, maxTextWidth, smallerFontSize, smallerLineHeight);
     }
 }
@@ -353,19 +353,19 @@ function drawVictory() {
         const isMobile = window.innerWidth <= 768;
         const fontSize = isMobile ? 36 : Math.min(60, GAME.displayWidth / 12);
         const maxTextWidth = GAME.displayWidth * 0.8;
-        const lineHeight = fontSize * 1.4;
+        const lineHeight = fontSize * 1.1;
 
         canvasContext.font = `${fontSize}px serif`;
         canvasContext.fillStyle = "black";
         canvasContext.textAlign = "center";
 
         // Аналогично для победы
-        const textY1 = GAME.displayHeight / 2 - lineHeight * 1.5;
+        const textY1 = GAME.displayHeight / 2 - lineHeight * 1.2;
         drawTextWithWrap("Победа!", GAME.displayWidth / 2, textY1, maxTextWidth, fontSize, lineHeight);
 
         const smallerFontSize = fontSize * 0.8;
         const smallerLineHeight = lineHeight * 0.9;
-        const textY2 = GAME.displayHeight / 2 + lineHeight * 1.5;
+        const textY2 = GAME.displayHeight / 2 + lineHeight * 1.2;
         drawTextWithWrap("Нажмите пробел, чтобы продолжить", GAME.displayWidth / 2, textY2, maxTextWidth, smallerFontSize, smallerLineHeight);
     }
 }
