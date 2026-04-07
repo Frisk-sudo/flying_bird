@@ -303,7 +303,6 @@ function drawGameOver() {
         canvasContext.fillStyle = "black";
         canvasContext.textAlign = "center";
 
-        // Центрируем по вертикали: используем половину высоты экрана
         const textY = GAME.displayHeight / 2;
 
         drawTextWithWrap("Игра окончена!", GAME.displayWidth / 2, textY, maxTextWidth, fontSize, lineHeight);
