@@ -292,6 +292,39 @@ function drawTextWithWrap(text, x, y, maxWidth, fontSize, lineHeight) {
     });
 }
 
+function drawTextWithWrap(text, x, y, maxWidth, fontSize, lineHeight) {
+    const words = text.split(' ');
+    const lines = [];
+    let currentLine = '';
+
+    // Разбиваем текст на строки
+    for (const word of words) {
+        const testLine = currentLine ? currentLine + ' ' + word : word;
+        const metrics = canvasContext.measureText(testLine);
+        const testWidth = metrics.width;
+
+        if (testWidth > maxWidth && currentLine) {
+            lines.push(currentLine);
+            currentLine = word;
+        } else {
+            currentLine = testLine;
+        }
+    }
+    lines.push(currentLine);
+
+    // Рассчитываем общую высоту блока текста
+    const totalHeight = (lines.length - 1) * lineHeight;
+    // Начальная Y-позиция: центр экрана минус половина высоты блока
+    const startY = y - totalHeight / 2;
+
+    // Отрисовываем каждую строку с корректным вертикальным смещением
+    lines.forEach((line, index) => {
+        canvasContext.fillText(line, x, startY + (index * lineHeight));
+    });
+
+    return lines; // Возвращаем для отладки или дополнительных расчётов
+}
+
 function drawGameOver() {
     if (gameOverFlag) {
         const isMobile = window.innerWidth <= 768;
@@ -303,6 +336,7 @@ function drawGameOver() {
         canvasContext.fillStyle = "black";
         canvasContext.textAlign = "center";
 
+        // Центр экрана по вертикали
         const textY = GAME.displayHeight / 2;
 
         drawTextWithWrap("Игра окончена!", GAME.displayWidth / 2, textY, maxTextWidth, fontSize, lineHeight);
