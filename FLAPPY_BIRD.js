@@ -258,7 +258,7 @@ function drawGameOver() {
 
 function drawVictory() {
     if (victory) {
-        const fontSize = Math.min(60, GAME.displayWidth / 8);
+        const fontSize = Math.min(60, GAME.displayWidth / 12);
         
         canvasContext.font = `${fontSize}px serif`;
         canvasContext.fillStyle = "black";
