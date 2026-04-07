@@ -241,8 +241,7 @@ function checkVictory() {
 
 function drawGameOver() {
     if (gameOverFlag) {
-        // Определяем размер шрифта в зависимости от ширины экрана
-        const fontSize = Math.min(60, GAME.displayWidth / 8);
+        const fontSize = Math.min(60, GAME.displayWidth / 12);
         
         canvasContext.font = `${fontSize}px serif`;
         canvasContext.fillStyle = "black";
