@@ -337,13 +337,13 @@ function drawGameOver() {
         canvasContext.textAlign = "center";
 
         // Первый блок — выше центра
-        const textY1 = GAME.displayHeight / 2 - lineHeight * 1.2;
+        const textY1 = GAME.displayHeight / 2 - lineHeight * 1;
         drawTextWithWrap("Игра окончена!", GAME.displayWidth / 2, textY1, maxTextWidth, fontSize, lineHeight);
 
         // Второй блок — ниже центра
         const smallerFontSize = fontSize * 0.8;
         const smallerLineHeight = lineHeight * 0.9;
-        const textY2 = GAME.displayHeight / 2 + lineHeight * 1.2;
+        const textY2 = GAME.displayHeight / 2 + lineHeight * 1;
         drawTextWithWrap("Нажмите пробел, чтобы продолжить", GAME.displayWidth / 2, textY2, maxTextWidth, smallerFontSize, smallerLineHeight);
     }
 }
@@ -360,12 +360,12 @@ function drawVictory() {
         canvasContext.textAlign = "center";
 
         // Аналогично для победы
-        const textY1 = GAME.displayHeight / 2 - lineHeight * 1.2;
+        const textY1 = GAME.displayHeight / 2 - lineHeight * 1;
         drawTextWithWrap("Победа!", GAME.displayWidth / 2, textY1, maxTextWidth, fontSize, lineHeight);
 
         const smallerFontSize = fontSize * 0.8;
         const smallerLineHeight = lineHeight * 0.9;
-        const textY2 = GAME.displayHeight / 2 + lineHeight * 1.2;
+        const textY2 = GAME.displayHeight / 2 + lineHeight * 1;
         drawTextWithWrap("Нажмите пробел, чтобы продолжить", GAME.displayWidth / 2, textY2, maxTextWidth, smallerFontSize, smallerLineHeight);
     }
 }
